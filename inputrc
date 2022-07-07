@@ -1,0 +1,20 @@
+set editing-mode vi
+set show-mode-in-prompt on
+set vi-ins-mode-string "\001\e[32m\002I \001\e[0m\002|"
+set vi-cmd-mode-string "\001\e[35m\002N \001\e[0m\002|"
+
+set keymap vi-insert  
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+"\C-l": clear-screen
+"\C-w": backward-kill-word
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+"\C-p": previous-history
+"\C-n": next-history
+"\C-x\C-r" re-read-init-file
+
+"kj": vi-movement-mode  
+
+set keymap vi-command
+"s": 'cc=\$(\C-y)\C-a'
