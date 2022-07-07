@@ -60,6 +60,9 @@ nmap <silent><Space><Space> :set nu! rnu! paste!<cr>
 " open terminal on current window
 command! T :term ++curwin
 
+" open file explorer
+command! F :15 Lexplore
+
 
 " VISUAL MODE
 " move the lines of visual mode up or down
@@ -69,6 +72,15 @@ vnoremap <silent> K :m '<-2<cr>gv
 
 " COLORSCHEME
 colo delek
+
+
+" startup and file explorer
+autocmd VimEnter    * nested call s:startup()
+function! s:startup()
+  if !argc() && line2byte('$') == -1
+      :15 Lex
+  endif
+endfunction
 
 
 " répéter avec . les commandes d'autres plugins
