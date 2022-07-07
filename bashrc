@@ -12,7 +12,7 @@ purple='\001\e[35m\002'
 cyan='\001\e[36m\002'
 white='\001\e[0m\002'
 
-PS1="$blue \W $white \$ "
+PS1="[\h] $blue \W $white \$ "
 
 
 
