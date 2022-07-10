@@ -1,12 +1,23 @@
-set relativenumber
-set nu rnu
+set ignorecase
+" windows and pane options 
+set wildmenu splitright
+" line numbers
+set relativenumber nu rnu ruler
+" colorscheme
+colo delek
 
-" indent settings:
-set smartindent
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-set backspace=indent,eol,start
+" Filetype settings
+set nocompatible
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
+
+" FIXME: mouse=a always ?
+if has_key(environ(), 'ANDROID_ROOT')
+    set mouse=a
+end
+
 
 " indentation
 " replace <tab> with spaces
@@ -17,70 +28,37 @@ set shiftwidth=4
 set softtabstop=4
 " <tab> char width
 set tabstop=4
-
-
-
-set splitright
-set ignorecase
-set nocompatible
-set ruler
-set wildmenu
-"set mouse=$VIM_MOUSE
-filetype on
-filetype plugin on
-filetype indent on
-syntax on
-
-
-" NORMAL MODE
+" set backspace behaviour
+set backspace=indent,eol,start
 
 " Move
 imap kj <Esc>
 imap jk <Esc>l
 
-" Tabs
 nmap <tab> gt
 
-" Windows
-" nnoremap <C-n> <C-w>w
-" nnoremap <C-p> <C-w>W
-nnoremap <C-j> <C-w>w
+noremap <C-j> <C-w>w
+tnoremap <C-j> <C-\><C-n><C-w>w
 
 
-" Save and quit
+" Save and quit (FIXME: usefull ?)
 map Z :xa<cr>
 map Q :q<cr>
 
-" Misc
+" EDITOR EXPERIENCE:
 map Y y$
 nmap <silent> <c-l> :noh<CR>
 
-nmap <silent><Space><Space> :set nu! rnu! paste!<cr>
-
-" open terminal on current window
-command! T :term ++curwin
-
-" open file explorer
-command! F :15 Lexplore
-
-
-" VISUAL MODE
 " move the lines of visual mode up or down
 vnoremap <silent> J :m '>+1<cr>gv
 vnoremap <silent> K :m '<-2<cr>gv
 
 
-" COLORSCHEME
-colo delek
-
-
-" startup and file explorer
-autocmd VimEnter    * nested call s:startup()
-function! s:startup()
-  if !argc() && line2byte('$') == -1
-      :15 Lex
-  endif
-endfunction
+" TOGGLE TOOLS:
+nmap <silent><Space><Space> <Cmd>set nu! rnu! paste!<cr>
+nmap <silent><Space>f <Cmd>30 Lexplore<cr>
+nmap <silent><Space>t <Cmd>on \| vs \| terminal<cr>
+nmap <silent><Space>o <Cmd>only<cr>
 
 
 " répéter avec . les commandes d'autres plugins

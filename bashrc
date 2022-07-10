@@ -1,5 +1,7 @@
 export TERM=xterm-256color
-export EDITOR="vim -u ~/.config/shell/vimrc"
+VIM_OR_NEOVIM="nvim"
+nvim --version > /dev/null || VIM_OR_NEOVIM="vim"
+export EDITOR="$VIM_OR_NEOVIM -u ~/.config/shell/vimrc"
 export INPUTRC="$HOME/.config/shell/inputrc"
 
 config=$HOME/.config/shell
@@ -17,8 +19,7 @@ PS1="[\h] $blue \W $white \$ "
 
 
 alias grep="grep --color=auto"
-alias v="vim -u ~/.config/shell/vimrc"
-alias E="$EDITOR $config && source $config/bashrc"
+alias v=$EDITOR	
 
 P(){
     cd $PROJECT_DIR
@@ -26,6 +27,12 @@ P(){
     cd $dir
     pwd
     ls -l
+}
+
+E(){
+    cd $config
+    $EDITOR .
+    source $config/bashrc
 }
 
 Update(){
@@ -37,9 +44,10 @@ Update(){
 save_conf(){
     cd $config
     echo "I will create a patch file with the modified configuration"
-    git diff > /tmp/shell.patch
+    patch=$(mktemp)
+    git diff > $patch
     echo "saved in pastebin:"
-    curl --upload-file /tmp/shell.patch https://transfer.sh/shell.patch
+    curl --upload-file $patch https://transfer.sh/shell.patch
     echo ""
 }
 
