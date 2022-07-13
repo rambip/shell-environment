@@ -36,4 +36,5 @@ source $HOME/.config/shell/bashrc
 - figlet
 - cacalib
 - fzf 
+- nnn as a file manager
 

@@ -14,19 +14,28 @@ purple='\001\e[35m\002'
 cyan='\001\e[36m\002'
 white='\001\e[0m\002'
 
+# GLOBAL SETTINGS:
 PS1="[\h] $blue \W $white \$ "
-
-
 
 alias grep="grep --color=auto"
 alias v=$EDITOR	
 
+unset HISTSIZE 
+unset HISTFILESIZE
+shopt -s histappend
+
+
 P(){
     cd $PROJECT_DIR
-    dir=$(ls | grep $1 | head -1)
-    cd $dir
-    pwd
-    ls -l
+    test -z "$1" && return
+    poss=$(ls | grep -i $1)
+    test $(echo $poss | wc -w) = "1" && cd $poss && return
+    select dir in $poss
+    do
+        cd $dir
+        ls -l
+        break
+    done
 }
 
 E(){
