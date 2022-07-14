@@ -24,13 +24,14 @@ unset HISTSIZE
 unset HISTFILESIZE
 shopt -s histappend
 
+
 # find directory in CWD with name similar to argument
 match_dir_name(){
     # if no argument default to current pwd
     test -z "$1" && echo . && return
 
     # find all matches with grep. if none, return an error
-    poss=$(ls | grep -i $1) || echo $1 
+    poss=$(ls | grep -i $1) || return 1
 
     # if single match return it
     test $(echo $poss | wc -w) = "1" && cd $poss && echo "$poss" && return
@@ -45,8 +46,8 @@ match_dir_name(){
 
 P(){
     cd $PROJECT_DIR
-    dir=$(match_dir_name $1) || mkdir $1
-    cd $dir
+    dir=$(match_dir_name $1) || echo 'does not exist !!!'
+    cd ./$dir
     ls -l
 }
 
@@ -59,6 +60,7 @@ E(){
 Update(){
     cd $config
     git pull
+    source bashrc
     cd $OLDPWD
 }
 

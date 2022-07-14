@@ -1,16 +1,25 @@
 set editing-mode vi
+set completion-ignore-case on
+
+# prompt
 set show-mode-in-prompt on
 set vi-ins-mode-string "\001\e[32m\002I \001\e[0m\002"
 set vi-cmd-mode-string "\001\e[35m\002N \001\e[0m\002"
 
 set keymap vi-insert  
+# basc movements
 "\C-a": beginning-of-line
 "\C-e": end-of-line
 "\C-l": clear-screen
 "\C-w": backward-kill-word
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
-"\C-x\C-r" re-read-init-file
+
+"\C-h": backward-kill-word:
+
+#"\C-x\C-r" re-read-init-file
+
+# history
 "\e[A": history-search-backward
 "\C-p": history-search-backward
 

@@ -29,13 +29,3 @@ source $HOME/.config/shell/bashrc
  - DrawIt : draw ascii diagrams
 
 
-
-## Usefull external packages (but to heavy to be portable)
-- bat
-- tldr
-- tmux
-- figlet
-- cacalib
-- fzf 
-- nnn as a file manager
-

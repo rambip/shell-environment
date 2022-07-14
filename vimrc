@@ -35,6 +35,7 @@ set backspace=indent,eol,start
 imap kj <Esc>
 imap jk <Esc>l
 
+nmap é <C-w>
 nmap <tab> gt
 
 noremap <C-j> <C-w>w
