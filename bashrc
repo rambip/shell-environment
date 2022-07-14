@@ -24,18 +24,30 @@ unset HISTSIZE
 unset HISTFILESIZE
 shopt -s histappend
 
+# find directory in CWD with name similar to argument
+match_dir_name(){
+    # if no argument default to current pwd
+    test -z "$1" && echo . && return
+
+    # find all matches with grep. if none, return an error
+    poss=$(ls | grep -i $1) || echo $1 
+
+    # if single match return it
+    test $(echo $poss | wc -w) = "1" && cd $poss && echo "$poss" && return
+
+    # else select it
+    select dir in $poss
+    do
+        echo $dir
+        return
+    done
+}
 
 P(){
     cd $PROJECT_DIR
-    test -z "$1" && return
-    poss=$(ls | grep -i $1)
-    test $(echo $poss | wc -w) = "1" && cd $poss && return
-    select dir in $poss
-    do
-        cd $dir
-        ls -l
-        break
-    done
+    dir=$(match_dir_name $1) || mkdir $1
+    cd $dir
+    ls -l
 }
 
 E(){
@@ -50,6 +62,7 @@ Update(){
     cd $OLDPWD
 }
 
+# FIXME: 100% github ?
 save_conf(){
     cd $config
     echo "I will create a patch file with the modified configuration"

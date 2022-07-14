@@ -21,6 +21,7 @@ source $HOME/.config/shell/bashrc
 
 
 ## TODO
+- port bash script (create projects and so on) to pyhton ?
 
 ### fun ideas to add:
 
