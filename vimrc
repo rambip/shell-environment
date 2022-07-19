@@ -31,6 +31,8 @@ set tabstop=4
 " set backspace behaviour
 set backspace=indent,eol,start
 
+let mapleader=","
+
 " Move
 imap kj <Esc>
 imap jk <Esc>l
@@ -38,7 +40,8 @@ imap jk <Esc>l
 nmap é <C-w>
 nmap <tab> gt
 
-noremap <C-j> <Cmd>:wincmd w<cr>  
+nnoremap <C-j> <Cmd>wincmd w<cr>  
+tnoremap <C-j> <Cmd>wincmd w<cr>  
 
 
 " Save and quit (FIXME: usefull ?)
@@ -57,7 +60,7 @@ vnoremap <silent> K :m '<-2<cr>gv
 " TOGGLE TOOLS:
 nmap <silent><Space><Space> <Cmd>set nu! rnu! paste!<cr>
 nmap <silent><Space>f <Cmd>30 Lexplore<cr>
-nmap <silent><Space>t <Cmd>on \| split \| terminal<cr>
+nmap <silent><Space>t <Cmd>terminal<cr>
 nmap <silent><Space>o <Cmd>only<cr>
 
 
@@ -74,6 +77,7 @@ source $HOME/.config/shell/vim-plugins/exchange.vim
 
 " <leader>t
 source $HOME/.config/shell/vim-plugins/sendtoterm.vim
+map , <Plug>SendToTerm()
 
 " ys - S en mode visuel
 source $HOME/.config/shell/vim-plugins/surround.vim

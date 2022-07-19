@@ -1,6 +1,7 @@
 export TERM=xterm-256color
 VIM_OR_NEOVIM="nvim"
 nvim --version > /dev/null || VIM_OR_NEOVIM="vim"
+vim --version > /dev/null || VIM_OR_NEOVIM="vi"
 export EDITOR="$VIM_OR_NEOVIM -u ~/.config/shell/vimrc"
 export INPUTRC="$HOME/.config/shell/inputrc"
 
