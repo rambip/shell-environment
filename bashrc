@@ -18,6 +18,7 @@ white='\001\e[0m\002'
 PS1="[\h] $blue \W $white \$ "
 
 alias grep="grep --color=auto"
+alias ls="ls --color=auto"
 alias v=$EDITOR	
 
 unset HISTSIZE 
@@ -55,6 +56,7 @@ E(){
     cd $config
     $EDITOR .
     source $config/bashrc
+    cd $OLDPWD
 }
 
 Update(){

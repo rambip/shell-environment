@@ -13,9 +13,9 @@ filetype plugin on
 filetype indent on
 syntax on
 
-" FIXME: mouse=a always ?
 if has_key(environ(), 'ANDROID_ROOT')
     set mouse=a
+    set splitbelow
 end
 
 
@@ -38,8 +38,7 @@ imap jk <Esc>l
 nmap é <C-w>
 nmap <tab> gt
 
-noremap <C-j> <C-w>w
-tnoremap <C-j> <C-\><C-n><C-w>w
+noremap <C-j> <Cmd>:wincmd w<cr>  
 
 
 " Save and quit (FIXME: usefull ?)
@@ -58,7 +57,7 @@ vnoremap <silent> K :m '<-2<cr>gv
 " TOGGLE TOOLS:
 nmap <silent><Space><Space> <Cmd>set nu! rnu! paste!<cr>
 nmap <silent><Space>f <Cmd>30 Lexplore<cr>
-nmap <silent><Space>t <Cmd>on \| vs \| terminal<cr>
+nmap <silent><Space>t <Cmd>on \| split \| terminal<cr>
 nmap <silent><Space>o <Cmd>only<cr>
 
 
