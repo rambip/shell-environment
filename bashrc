@@ -1,12 +1,14 @@
-export TERM=xterm-256color
-VIM_OR_NEOVIM="nvim"
-nvim --version > /dev/null || VIM_OR_NEOVIM="vim"
-vim --version > /dev/null || VIM_OR_NEOVIM="vi"
-export EDITOR="$VIM_OR_NEOVIM -u ~/.config/shell/vimrc"
-export INPUTRC="$HOME/.config/shell/inputrc"
+export CONFIG=$HOME/.config/shell
+EDITOR="vi"
+# check editors available
+vim --version > /dev/null && EDITOR="vim -u $CONFIG/vimmrc"
+nvim --version > /dev/null && EDITOR="nvim -u $CONFIG/vimrc"
 
-config=$HOME/.config/shell
-#cd $config && git pull
+# input settings
+export INPUTRC="$config/shell/inputrc"
+
+# terminal colors
+export TERM=xterm-256color
 
 green='\001\e[32m\002'
 red='\001\e[33m\002'
@@ -28,15 +30,15 @@ shopt -s histappend
 
 
 # find directory in CWD with name similar to argument
-match_dir_name(){
+match_project_name(){
     # if no argument default to current pwd
-    test -z "$1" && echo . && return
+    test -z "$PROJECT_DIR/$1" && echo . && return
 
     # find all matches with grep. if none, return an error
-    poss=$(ls | grep -i $1) || return 1
+    poss=$(ls $PROJECT_DIR | grep -i $1) || return 1
 
     # if single match return it
-    test $(echo $poss | wc -w) = "1" && cd $poss && echo "$poss" && return
+    test $(echo $poss | wc -w) = "1" && echo "$poss" && return
 
     # else select it
     select dir in $poss
@@ -47,30 +49,28 @@ match_dir_name(){
 }
 
 P(){
-    cd $PROJECT_DIR
-    dir=$(match_dir_name $1) || echo 'does not exist !!!'
-    cd ./$dir
+    dir=$(match_project_name $1) || echo 'does not exist !!!'
+    pushd "$PROJECT_DIR/$dir"
     ls -l
 }
 
 E(){
-    cd $config
+    pushd $CONFIG
     $EDITOR .
-    source $config/bashrc
-    cd $OLDPWD
+    source $CONFIG/bashrc
+    popd
 }
 
 Update(){
-    cd $config
+    pushd $CONFIG
     git pull
     source bashrc
-    cd $OLDPWD
+    #popd
 }
 
-# FIXME: 100% github ?
 save_conf(){
-    cd $config
-    echo "I will create a patch file with the modified configuration"
+    cd $CONFIG
+    echo "I will create a patch file with the modified config"
     patch=$(mktemp)
     git diff > $patch
     echo "saved in pastebin:"

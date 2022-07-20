@@ -66,27 +66,30 @@ nmap <silent><Space>o <Cmd>only<cr>
 
 " répéter avec . les commandes d'autres plugins
 " a charger avant les autres plugins
-source $HOME/.config/shell/vim-plugins/repeat.vim
+source $CONFIG/vim-plugins/repeat.vim
 
 
 " gc pour commenter
-source $HOME/.config/shell/vim-plugins/commentary.vim
+source $CONFIG/vim-plugins/commentary.vim
 
 " cx pour échanger - X en mode visuel
-source $HOME/.config/shell/vim-plugins/exchange.vim
+source $CONFIG/vim-plugins/exchange.vim
 
 " <leader>t
-source $HOME/.config/shell/vim-plugins/sendtoterm.vim
+source $CONFIG/vim-plugins/sendtoterm.vim
 map , <Plug>SendToTerm()
 
 " ys - S en mode visuel
-source $HOME/.config/shell/vim-plugins/surround.vim
+source $CONFIG/vim-plugins/surround.vim
+
+" TODO: sneak.vim
+
 
 " ┏━┓┏┓ ┏┓ ┏━┓┏━╸╻ ╻╻┏━┓╺┳╸╻┏━┓┏┓╻┏━┓
 " ┣━┫┣┻┓┣┻┓┣┳┛┣╸ ┃┏┛┃┣━┫ ┃ ┃┃ ┃┃┗┫┗━┓
 " ╹ ╹┗━┛┗━┛╹┗╸┗━╸┗┛ ╹╹ ╹ ╹ ╹┗━┛╹ ╹┗━┛
 " regex abbreviations
-source $HOME/.config/shell/vim-plugins/abbreviations.vim
+source $CONFIG/vim-plugins/abbreviations.vim
 " let g:regex_abbreviations#expand_symbol = "\<tab>"
 inoremap <tab> <c-r>=CompleteAbbreviation()<cr>
 " C/C++/java
