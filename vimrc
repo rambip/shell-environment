@@ -58,7 +58,7 @@ vnoremap <silent> K :m '<-2<cr>gv
 
 " TOGGLE TOOLS:
 nmap <silent><Space><Space> <Cmd>set nu! rnu! paste!<cr>
-nmap <silent><Space>f <Cmd>30 Lexplore<cr>
+nmap <silent><Space>f <Cmd>25 Lexplore<cr>
 nmap <silent><Space>o <Cmd>only<cr>
 nmap <silent><Space>n <Cmd>new<cr>
 
