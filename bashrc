@@ -101,3 +101,11 @@ Save(){
     echo $1 | grep '[^a-z]\?proj' && save_project && return
     echo "nothing saved. chose 'config' or 'project'"
 }
+
+# pipe result into editor
+vipe(){
+    FILE=$(mktemp)
+    cat > $FILE
+    $EDITOR $FILE
+    cat $FILE
+}
