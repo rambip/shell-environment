@@ -4,7 +4,7 @@ set wildmenu splitright
 " line numbers
 set relativenumber nu rnu ruler
 " colorscheme
-colo delek
+colo desert
 
 " Filetype settings
 set nocompatible
@@ -15,7 +15,6 @@ syntax on
 
 if has_key(environ(), 'ANDROID_ROOT')
     set mouse=a
-    set splitbelow
 end
 
 
@@ -60,8 +59,14 @@ vnoremap <silent> K :m '<-2<cr>gv
 " TOGGLE TOOLS:
 nmap <silent><Space><Space> <Cmd>set nu! rnu! paste!<cr>
 nmap <silent><Space>f <Cmd>30 Lexplore<cr>
-nmap <silent><Space>t <Cmd>terminal<cr>
 nmap <silent><Space>o <Cmd>only<cr>
+nmap <silent><Space>n <Cmd>new<cr>
+
+if has("nvim")
+    nmap <silent><Space>t <Cmd>vs \| terminal<cr>
+else
+    nmap <silent><Space>t <Cmd>terminal<cr>
+end
 
 
 " répéter avec . les commandes d'autres plugins

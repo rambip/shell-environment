@@ -1,11 +1,11 @@
 export CONFIG=$HOME/.config/shell
 EDITOR="vi"
 # check editors available
-vim --version > /dev/null && EDITOR="vim -u $CONFIG/vimmrc"
-nvim --version > /dev/null && EDITOR="nvim -u $CONFIG/vimrc"
+which vim && EDITOR="vim -u $CONFIG/vimrc"
+which nvim && EDITOR="nvim -u $CONFIG/vimrc"
 
 # input settings
-export INPUTRC="$config/shell/inputrc"
+export INPUTRC="$CONFIG/inputrc"
 
 # terminal colors
 export TERM=xterm-256color
@@ -32,7 +32,7 @@ shopt -s histappend
 # find directory in CWD with name similar to argument
 match_project_name(){
     # if no argument default to current pwd
-    test -z "$PROJECT_DIR/$1" && echo . && return
+    test -z "$1" && echo . && return
 
     # find all matches with grep. if none, return an error
     poss=$(ls $PROJECT_DIR | grep -i $1) || return 1
