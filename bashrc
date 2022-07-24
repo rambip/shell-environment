@@ -1,13 +1,15 @@
 export CONFIG=$HOME/.config/shell
-EDITOR="vi"
-# check editors available
-which vim && EDITOR="vim -u $CONFIG/vimrc"
-which nvim && EDITOR="nvim -u $CONFIG/vimrc"
-
-# input settings
 export INPUTRC="$CONFIG/inputrc"
 
-# terminal colors
+# CHECK EDITORS AVAILABLES:
+# will take the first available in [nvim, vim, vi]
+EDITOR="vi"
+which vim && EDITOR="vim -u $CONFIG/vimrc"
+which nvim && EDITOR="nvim -u $CONFIG/vimrc"
+export EDITOR
+
+
+# TERMINAL COLORS AND PROMPTS:
 export TERM=xterm-256color
 
 white='\001\e[0m\002'
@@ -20,19 +22,30 @@ purple='\001\e[35m\002'
 cyan='\001\e[36m\002'
 gray='\001\e[37m\002'
 
-# GLOBAL SETTINGS:
-PS1="[\u$gray@$white\h]${blue} \w\n ${white} \$ "
+get_info(){
+    # if variable `DISPLAY_INFO` is set, display user, hostname and pwd
+    export PS1="\$ "
+    test -n "$DISPLAY_INFO" && export PS1="[\u${gray}@${white}\h]${blue} \w \n ${white}\$ "
+    export DISPLAY_INFO=""
+}
+DISPLAY_INFO=1
+PROMPT_COMMAND="get_info"
 
+
+# ALIASES AND TRICKS:
 alias grep="grep --color=auto"
 alias ls="ls --color=auto"
 alias v=$EDITOR	
 shopt -s autocd
 
-# History settings
+# HISTORY SETTINGS:
 unset HISTSIZE 
 unset HISTFILESIZE
 shopt -s histappend
 
+
+
+# CUSTOM FUNCTIONS:
 
 # find directory in CWD with name similar to argument
 match_project_name(){

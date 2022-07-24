@@ -5,19 +5,20 @@ set completion-ignore-case on
 set show-mode-in-prompt on
 set vi-ins-mode-string "\001\e[32m\002I \001\e[0m\002"
 set vi-cmd-mode-string "\001\e[35m\002N \001\e[0m\002"
+# prompt all infos when I clear the screen
+"\C-l": "clear; DISPLAY_INFO=1 \015"
 
 set keymap vi-insert  
-# basc movements
+# basic movements
 "\C-a": beginning-of-line
 "\C-e": end-of-line
-"\C-l": clear-screen
 "\C-w": backward-kill-word
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
 
 "\C-h": backward-kill-word:
 
-#"\C-x\C-r" re-read-init-file
+"kj": vi-movement-mode  
 
 # history
 "\e[A": history-search-backward
@@ -25,8 +26,3 @@ set keymap vi-insert
 
 "\e[B": history-search-forward
 "\C-n": history-search-forward
-
-"kj": vi-movement-mode  
-
-set keymap vi-command
-"s": 'cc=\$(\C-y)\C-a'
