@@ -7,11 +7,11 @@ fu! SendToTerm(...)
     " select terminal window
     let term_window = s:get_terminal_windows()[0].winnr
 
-    " copy text (current line)
+    " copy text (current line, without indentation)
     silent exe 'normal! ^"ay$'
 
-    " copied text
-    let text = @a
+    " captured text, with a newline
+    let text = @a .. "\n"
 
     " send to terminal
     if has("nvim")
