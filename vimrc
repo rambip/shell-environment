@@ -59,7 +59,6 @@ nmap <silent><Space>n <Cmd>new<cr>
 
 if has("nvim")
     nmap <silent><Space>t <Cmd>vs \| terminal<cr>
-    autocmd TermOpen * startinsert
 else
     nmap <silent><Space>t <Cmd>terminal<cr>
 end
