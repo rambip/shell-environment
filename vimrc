@@ -42,11 +42,6 @@ nmap <tab> gt
 nnoremap <C-j> <Cmd>wincmd w<cr>  
 tnoremap <C-j> <Cmd>wincmd w<cr>  
 
-
-" Save and quit (FIXME: usefull ?)
-map Z :xa<cr>
-map Q :q<cr>
-
 " EDITOR EXPERIENCE:
 map Y y$
 nmap <silent> <c-l> :noh<CR>
@@ -64,6 +59,7 @@ nmap <silent><Space>n <Cmd>new<cr>
 
 if has("nvim")
     nmap <silent><Space>t <Cmd>vs \| terminal<cr>
+    autocmd TermOpen * startinsert
 else
     nmap <silent><Space>t <Cmd>terminal<cr>
 end
@@ -81,8 +77,8 @@ source $CONFIG/vim-plugins/commentary.vim
 source $CONFIG/vim-plugins/exchange.vim
 
 " <leader>t
-source $CONFIG/vim-plugins/sendtoterm.vim
-map , <Plug>SendToTerm()
+source $CONFIG/vim-plugins/sendtoterm-custom.vim
+map <leader>t <Cmd>call SendToTerm()<cr>
 
 " ys - S en mode visuel
 source $CONFIG/vim-plugins/surround.vim
@@ -93,12 +89,12 @@ source $CONFIG/vim-plugins/surround.vim
 " ┏━┓┏┓ ┏┓ ┏━┓┏━╸╻ ╻╻┏━┓╺┳╸╻┏━┓┏┓╻┏━┓
 " ┣━┫┣┻┓┣┻┓┣┳┛┣╸ ┃┏┛┃┣━┫ ┃ ┃┃ ┃┃┗┫┗━┓
 " ╹ ╹┗━┛┗━┛╹┗╸┗━╸┗┛ ╹╹ ╹ ╹ ╹┗━┛╹ ╹┗━┛
-" regex abbreviations
-source $CONFIG/vim-plugins/abbreviations.vim
-" let g:regex_abbreviations#expand_symbol = "\<tab>"
-inoremap <tab> <c-r>=CompleteAbbreviation()<cr>
-" C/C++/java
-call AddAbbreviation("^ *forc$", "for (; ; ) {\<cr>}\<esc>\<up>0f;i", 1) " empty for loop
-" call AddAbbreviation("^ *for.$", "\<esc>xa (int =; ; ) {\<cr>}\<esc>\<up>0f=Pla") " for loop with a 1 letter variable
-call AddAbbreviation("^ *for *(.*;.*;.*) *{ *$", "\<right>\<esc>/;\\|)\<cr>:noh\<cr>i") " go to next ';' when in a for loop
+" " regex abbreviations
+" source $CONFIG/vim-plugins/abbreviations.vim
+" " let g:regex_abbreviations#expand_symbol = "\<tab>"
+" inoremap <tab> <c-r>=CompleteAbbreviation()<cr>
+" " C/C++/java
+" call AddAbbreviation("^ *forc$", "for (; ; ) {\<cr>}\<esc>\<up>0f;i", 1) " empty for loop
+" " call AddAbbreviation("^ *for.$", "\<esc>xa (int =; ; ) {\<cr>}\<esc>\<up>0f=Pla") " for loop with a 1 letter variable
+" call AddAbbreviation("^ *for *(.*;.*;.*) *{ *$", "\<right>\<esc>/;\\|)\<cr>:noh\<cr>i") " go to next ';' when in a for loop
 

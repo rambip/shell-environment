@@ -1,8 +1,10 @@
+#!/bin/bash
+
 export CONFIG=$HOME/.config/shell
 export INPUTRC="$CONFIG/inputrc"
 
 # CHECK EDITORS AVAILABLES:
-# will take the first available in [nvim, vim, vi]
+# will take the first available in [helix, nvim, vim, vi]
 EDITOR="vi"
 which vim && EDITOR="vim -u $CONFIG/vimrc"
 which nvim && EDITOR="nvim -u $CONFIG/vimrc"
