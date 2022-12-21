@@ -8,7 +8,7 @@ fu! SendToTerm(...)
     let term_window = s:get_terminal_windows()[0].winnr
 
     " copy text (current line)
-    silent exe 'normal! ^"ayy'
+    silent exe 'normal! ^"ay$'
 
     " copied text
     let text = @a
