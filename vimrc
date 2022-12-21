@@ -1,24 +1,9 @@
-set ignorecase
-" windows and pane options 
-set wildmenu splitright
-" line numbers
-set relativenumber nu rnu ruler
-" colorscheme
-colo desert
-
-" Filetype settings
-set nocompatible
-filetype on
-filetype plugin on
-filetype indent on
-syntax on
-
-if has_key(environ(), 'ANDROID_ROOT')
-    set mouse=a
-end
-
-
-" indentation
+          " _ _ _   _             
+  " ___  __| (_) |_(_)_ __   __ _ 
+ " / _ \/ _` | | __| | '_ \ / _` |
+" |  __/ (_| | | |_| | | | | (_| |
+ " \___|\__,_|_|\__|_|_| |_|\__, |
+          "                 |___/ 
 " replace <tab> with spaces
 set expandtab smarttab smartindent autoindent
 " autoindentation width
@@ -30,33 +15,65 @@ set tabstop=4
 " set backspace behaviour
 set backspace=indent,eol,start
 
-let mapleader=","
 
-" Move
+map Y y$
+
+" move the lines of visual mode up or down
+vnoremap <silent> J :m '>+1<cr>gv
+vnoremap <silent> K :m '<-2<cr>gv
+                                                  
 imap kj <Esc>
 imap jk <Esc>l
 
-nmap é <C-w>
+" just for convenience: allow to repeat the following plugins
+source $CONFIG/vim-plugins/repeat.vim
+
+" `gc` to comment
+source $CONFIG/vim-plugins/commentary.vim
+" `ys` (`S` in visual mode) for surrounding object 
+source $CONFIG/vim-plugins/surround.vim
+" `cx` (`X` in visual mode) to exchange pieces of text
+source $CONFIG/vim-plugins/exchange.vim
+
+                      " _             
+ " _ __ ___   _____   _(_)_ __   __ _ 
+" | '_ ` _ \ / _ \ \ / / | '_ \ / _` |
+" | | | | | | (_) \ V /| | | | | (_| |
+" |_| |_| |_|\___/ \_/ |_|_| |_|\__, |
+                      "         |___/ 
 nmap <tab> gt
 
 nnoremap <C-j> <Cmd>wincmd w<cr>  
 tnoremap <C-j> <Cmd>wincmd w<cr>  
 
-" EDITOR EXPERIENCE:
-map Y y$
-nmap <silent> <c-l> :noh<CR>
+" Filetype settings
+set nocompatible
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
 
-" move the lines of visual mode up or down
-vnoremap <silent> J :m '>+1<cr>gv
-vnoremap <silent> K :m '<-2<cr>gv
+set ignorecase
 
 
-" TOGGLE TOOLS:
+ " _              _     
+" | |_ ___   ___ | |___ 
+" | __/ _ \ / _ \| / __|
+" | || (_) | (_) | \__ \
+ " \__\___/ \___/|_|___/
+                      
+
+let mapleader=","
+
+" toggle line numerotation and paste mode
 nmap <silent><Space><Space> <Cmd>set nu! rnu! paste!<cr>
+" toggle file explorer
 nmap <silent><Space>f <Cmd>25 Lexplore<cr>
+" fullscreen 
 nmap <silent><Space>o <Cmd>only<cr>
+" new window 
 nmap <silent><Space>n <Cmd>new<cr>
-
+" new terminal
 if has("nvim")
     nmap <silent><Space>t <Cmd>vs \| terminal<cr>
 else
@@ -64,36 +81,36 @@ else
 end
 
 
-" répéter avec . les commandes d'autres plugins
-" a charger avant les autres plugins
-source $CONFIG/vim-plugins/repeat.vim
-
-
-" gc pour commenter
-source $CONFIG/vim-plugins/commentary.vim
-
-" cx pour échanger - X en mode visuel
-source $CONFIG/vim-plugins/exchange.vim
-
-" <leader>t
+" <leader>t to send text to terminal
 source $CONFIG/vim-plugins/sendtoterm-custom.vim
 map <leader>t <Cmd>call SendToTerm()<cr>
 
-" ys - S en mode visuel
-source $CONFIG/vim-plugins/surround.vim
 
-" TODO: sneak.vim
+ " ____ _______   ___     _____ 
+" / ___|_   _\ \ / / |   | ____|
+" \___ \ | |  \ V /| |   |  _|  
+ " ___) || |   | | | |___| |___ 
+" |____/ |_|   |_| |_____|_____|
+                              
+" windows and pane options 
+set wildmenu splitright
+" line numbers
+set relativenumber nu rnu ruler
+" colorscheme
+colo desert
+highlight Normal ctermbg=None
+highlight NonText ctermbg=None
 
+nmap <silent> <c-l> :noh<CR>
 
-" ┏━┓┏┓ ┏┓ ┏━┓┏━╸╻ ╻╻┏━┓╺┳╸╻┏━┓┏┓╻┏━┓
-" ┣━┫┣┻┓┣┻┓┣┳┛┣╸ ┃┏┛┃┣━┫ ┃ ┃┃ ┃┃┗┫┗━┓
-" ╹ ╹┗━┛┗━┛╹┗╸┗━╸┗┛ ╹╹ ╹ ╹ ╹┗━┛╹ ╹┗━┛
-" " regex abbreviations
-" source $CONFIG/vim-plugins/abbreviations.vim
-" " let g:regex_abbreviations#expand_symbol = "\<tab>"
-" inoremap <tab> <c-r>=CompleteAbbreviation()<cr>
-" " C/C++/java
-" call AddAbbreviation("^ *forc$", "for (; ; ) {\<cr>}\<esc>\<up>0f;i", 1) " empty for loop
-" " call AddAbbreviation("^ *for.$", "\<esc>xa (int =; ; ) {\<cr>}\<esc>\<up>0f=Pla") " for loop with a 1 letter variable
-" call AddAbbreviation("^ *for *(.*;.*;.*) *{ *$", "\<right>\<esc>/;\\|)\<cr>:noh\<cr>i") " go to next ';' when in a for loop
+       " _   _               
+  " ___ | |_| |__   ___ _ __ 
+ " / _ \| __| '_ \ / _ \ '__|
+" | (_) | |_| | | |  __/ |   
+ " \___/ \__|_| |_|\___|_|   
+                           
+
+if has_key(environ(), 'ANDROID_ROOT')
+    set mouse=a
+end
 
