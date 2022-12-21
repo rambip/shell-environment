@@ -3,15 +3,16 @@
 export CONFIG=$HOME/.config/shell
 export INPUTRC="$CONFIG/inputrc"
 
-# CHECK EDITORS AVAILABLES:
-# will take the first available in [helix, nvim, vim, vi]
+## Check available editors:
+# will take the first available in nvim, vim, vi
 EDITOR="vi"
-which vim && EDITOR="vim -u $CONFIG/vimrc"
-which nvim && EDITOR="nvim -u $CONFIG/vimrc"
+which vim > /dev/null && EDITOR="vim -u $CONFIG/vimrc"
+which nvim > /dev/null && EDITOR="nvim -u $CONFIG/vimrc"
 export EDITOR
+echo "EDITOR is $EDITOR"
 
 
-# TERMINAL COLORS AND PROMPTS:
+# TERMINAL COLOR AND PROMPT:
 export TERM=xterm-256color
 
 white='\001\e[0m\002'
@@ -55,10 +56,10 @@ match_project_name(){
     test -z "$1" && echo . && return
 
     # find all matches with grep. if none, return an error
-    poss=$(ls $PROJECT_DIR | grep -i $1) || return 1
+    matching_projects=$(ls $PROJECT_DIR | grep -i $1) || return 1
 
     # if single match return it
-    test $(echo $poss | wc -w) = "1" && echo "$poss" && return
+    test $(echo $matching_projects | wc -w) = "1" && echo "$matching_projects" && return
 
     # else select it
     select dir in $poss
@@ -85,23 +86,7 @@ Update(){
     pushd $CONFIG
     git pull
     source bashrc
-    #popd
-}
-
-save_conf(){
-    cd $CONFIG
-    echo "I will create a patch file with the modified config"
-    patch=$(mktemp)
-    git diff > $patch
-    echo "saved in pastebin:"
-    curl --upload-file $patch https://transfer.sh/shell.patch
-    echo ""
-}
-
-Save(){
-    echo $1 | grep '[^a-z]\?conf' && save_conf && return
-    echo $1 | grep '[^a-z]\?proj' && save_project && return
-    echo "nothing saved. chose 'config' or 'project'"
+    popd
 }
 
 # pipe result into editor
