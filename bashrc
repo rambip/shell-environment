@@ -62,7 +62,7 @@ match_project_name(){
     test $(echo $matching_projects | wc -w) = "1" && echo "$matching_projects" && return
 
     # else select it
-    select dir in $poss
+    select dir in $matching_projects
     do
         echo $dir
         return
