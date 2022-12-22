@@ -1,9 +1,16 @@
-          " _ _ _   _             
-  " ___  __| (_) |_(_)_ __   __ _ 
- " / _ \/ _` | | __| | '_ \ / _` |
-" |  __/ (_| | | |_| | | | | (_| |
- " \___|\__,_|_|\__|_|_| |_|\__, |
-          "                 |___/ 
+" Filetype settings
+set nocompatible
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
+
+"           _ _ _   
+"   ___  __| (_) |_ 
+"  / _ \/ _` | | __|
+" |  __/ (_| | | |_ 
+"  \___|\__,_|_|\__|
+                  
 " replace <tab> with spaces
 set expandtab smarttab smartindent autoindent
 " autoindentation width
@@ -15,13 +22,15 @@ set tabstop=4
 " set backspace behaviour
 set backspace=indent,eol,start
 
+set ignorecase
 
 map Y y$
 
 " move the lines of visual mode up or down
 vnoremap <silent> J :m '>+1<cr>gv
 vnoremap <silent> K :m '<-2<cr>gv
-                                                  
+
+
 imap kj <Esc>
 imap jk <Esc>l
 
@@ -35,25 +44,17 @@ source $CONFIG/vim-plugins/surround.vim
 " `cx` (`X` in visual mode) to exchange pieces of text
 source $CONFIG/vim-plugins/exchange.vim
 
-                      " _             
- " _ __ ___   _____   _(_)_ __   __ _ 
-" | '_ ` _ \ / _ \ \ / / | '_ \ / _` |
-" | | | | | | (_) \ V /| | | | | (_| |
-" |_| |_| |_|\___/ \_/ |_|_| |_|\__, |
-                      "         |___/ 
+                          
+"  _ __ ___   _____   _____ 
+" | '_ ` _ \ / _ \ \ / / _ \
+" | | | | | | (_) \ V /  __/
+" |_| |_| |_|\___/ \_/ \___|
+                          
 nmap <tab> gt
 
 nnoremap <C-j> <Cmd>wincmd w<cr>  
 tnoremap <C-j> <Cmd>wincmd w<cr>  
 
-" Filetype settings
-set nocompatible
-filetype on
-filetype plugin on
-filetype indent on
-syntax on
-
-set ignorecase
 
 
  " _              _     
@@ -86,11 +87,12 @@ source $CONFIG/vim-plugins/sendtoterm-custom.vim
 map <leader>t <Cmd>call SendToTerm()<cr>
 
 
- " ____ _______   ___     _____ 
-" / ___|_   _\ \ / / |   | ____|
-" \___ \ | |  \ V /| |   |  _|  
- " ___) || |   | | | |___| |___ 
-" |____/ |_|   |_| |_____|_____|
+"     _         _      
+" ___| |_ _   _| | ___ 
+"/ __| __| | | | |/ _ \
+"\__ \ |_| |_| | |  __/
+"|___/\__|\__, |_|\___|
+"         |___/        
                               
 " windows and pane options 
 set wildmenu splitright
