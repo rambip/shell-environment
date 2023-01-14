@@ -55,11 +55,8 @@ source $CONFIG/vim-plugins/exchange.vim
 nmap <tab> gt
 nnoremap <leader>n :bn<cr>
 
+nnoremap <C-j> :wincmd w<cr>
 " TODO: harpoon-like ?
-
-nnoremap <C-j> :wincmd w<cr>  
-tnoremap <C-j> :wincmd w<cr>  
-
 
 
  " _              _     
@@ -81,8 +78,10 @@ nmap <silent><Space>n :new<cr>
 " new terminal
 if has("nvim")
     nmap <silent><Space>t :vs \| terminal<cr>
+    tnoremap <C-j> <Cmd>wincmd w<cr>
 else
     nmap <silent><Space>t :terminal<cr>
+    tnoremap <C-j> :wincmd w<cr>
 end
 
 
