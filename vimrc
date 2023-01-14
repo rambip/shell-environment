@@ -26,6 +26,8 @@ set ignorecase
 
 map Y y$
 
+let mapleader=","
+
 " move the lines of visual mode up or down
 vnoremap <silent> J :m '>+1<cr>gv
 vnoremap <silent> K :m '<-2<cr>gv
@@ -51,9 +53,12 @@ source $CONFIG/vim-plugins/exchange.vim
 " |_| |_| |_|\___/ \_/ \___|
                           
 nmap <tab> gt
+nnoremap <leader>n :bn<cr>
 
-nnoremap <C-j> <Cmd>wincmd w<cr>  
-tnoremap <C-j> <Cmd>wincmd w<cr>  
+" TODO: harpoon-like ?
+
+nnoremap <C-j> :wincmd w<cr>  
+tnoremap <C-j> :wincmd w<cr>  
 
 
 
@@ -64,27 +69,26 @@ tnoremap <C-j> <Cmd>wincmd w<cr>
  " \__\___/ \___/|_|___/
                       
 
-let mapleader=","
 
 " toggle line numerotation and paste mode
-nmap <silent><Space><Space> <Cmd>set nu! rnu! paste!<cr>
+nmap <silent><Space><Space> :set nu! rnu! paste!<cr>
 " toggle file explorer
-nmap <silent><Space>f <Cmd>25 Lexplore<cr>
+nmap <silent><Space>f :25 Lexplore<cr>
 " fullscreen 
-nmap <silent><Space>o <Cmd>only<cr>
+nmap <silent><Space>o :only<cr>
 " new window 
-nmap <silent><Space>n <Cmd>new<cr>
+nmap <silent><Space>n :new<cr>
 " new terminal
 if has("nvim")
-    nmap <silent><Space>t <Cmd>vs \| terminal<cr>
+    nmap <silent><Space>t :vs \| terminal<cr>
 else
-    nmap <silent><Space>t <Cmd>terminal<cr>
+    nmap <silent><Space>t :terminal<cr>
 end
 
 
 " <leader>t to send text to terminal
 source $CONFIG/vim-plugins/sendtoterm-custom.vim
-map <leader>t <Cmd>call SendToTerm()<cr>
+map <leader>t :call SendToTerm()<cr>
 
 
 "     _         _      
@@ -99,7 +103,7 @@ set wildmenu splitright
 " line numbers
 set relativenumber nu rnu ruler
 " colorscheme
-colo desert
+colo slate
 highlight Normal ctermbg=None
 highlight NonText ctermbg=None
 
@@ -116,3 +120,6 @@ if has_key(environ(), 'ANDROID_ROOT')
     set mouse=a
 end
 
+if has("nvim")
+    so ~/.config/nvim/init.lua
+endif
