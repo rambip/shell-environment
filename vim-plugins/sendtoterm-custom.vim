@@ -1,3 +1,5 @@
+" my fork of https://github.com/habamax/vim-sendtoterm
+
 " get all terminal windows
 fun! s:get_terminal_windows()
     return map(filter(copy(getwininfo()), {k,v -> getbufvar(v.bufnr, '&buftype') == 'terminal'}), 'v:val')
