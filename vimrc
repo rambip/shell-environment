@@ -81,7 +81,7 @@ if has("nvim")
     tnoremap <C-j> <Cmd>wincmd w<cr>
 else
     nmap <silent><Space>t :terminal<cr>
-    tnoremap <C-j> :wincmd w<cr>
+    tnoremap <C-j> <C-w><C-w>
 end
 
 
