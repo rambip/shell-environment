@@ -10,9 +10,7 @@ which vim > /dev/null && EDITOR="vim -u $CONFIG/vimrc"
 which nvim > /dev/null && EDITOR="nvim -u $CONFIG/vimrc"
 export EDITOR
 echo "EDITOR is $EDITOR"
-echo ""
 pwd
-ls
 
 
 # TERMINAL COLOR AND PROMPT:
