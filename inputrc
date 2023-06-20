@@ -5,10 +5,12 @@ set completion-ignore-case on
 set show-mode-in-prompt on
 set vi-ins-mode-string "\001\e[32m\002I \001\e[0m\002"
 set vi-cmd-mode-string "\001\e[35m\002N \001\e[0m\002"
-# prompt all infos when I clear the screen
-"\C-l": "clear; DISPLAY_INFO=1 \015"
 
 set keymap vi-insert  
+
+# clear screen
+Control-l: clear-screen
+
 # basic movements
 "\C-a": beginning-of-line
 "\C-e": end-of-line

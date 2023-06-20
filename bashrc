@@ -25,20 +25,12 @@ purple='\001\e[35m\002'
 cyan='\001\e[36m\002'
 gray='\001\e[37m\002'
 
-get_info(){
-    # if variable `DISPLAY_INFO` is set, display user, hostname and pwd
-    export PS1="\$ "
-    test -n "$DISPLAY_INFO" && export PS1="[\u${gray}@${white}\h]${blue} \w \n ${white}\$ "
-    export DISPLAY_INFO=""
-}
-DISPLAY_INFO=1
-PROMPT_COMMAND="get_info"
-
+export PS1="\$ "
 
 # ALIASES AND TRICKS:
 alias grep="grep --color=auto"
 alias ls="ls --color=auto"
-alias v=$EDITOR	
+alias v=$EDITOR
 shopt -s autocd
 
 # HISTORY SETTINGS:
@@ -49,24 +41,12 @@ shopt -s histappend
 
 
 # CUSTOM FUNCTIONS:
-
-# find directory in CWD with name similar to argument
-match_project_name(){
-    # if no argument default to current pwd
-    test -z "$1" && echo . && return
-
-    # find all matches with grep. if none, return an error
-    matching_projects=$(ls $PROJECT_DIR | grep -i $1) || return 1
-
-    # if single match return it
-    test $(echo $matching_projects | wc -w) = "1" && echo "$matching_projects" && return
-
-    # else select it
-    select dir in $matching_projects
-    do
-        echo $dir
-        return
-    done
+H(){
+    echo -en $blue
+    whoami
+    echo -en $white
+    uname -no
+    pwd
 }
 
 P(){

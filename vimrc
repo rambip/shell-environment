@@ -1,6 +1,5 @@
 " Filetype settings
 set nocompatible
-filetype on
 filetype plugin on
 filetype indent on
 syntax on
@@ -12,17 +11,15 @@ syntax on
 "  \___|\__,_|_|\__|
                   
 " replace <tab> with spaces
-set expandtab smarttab smartindent autoindent
-" autoindentation width
-set shiftwidth=4
-" <tab> indentation width
-set softtabstop=4
-" <tab> char width
-set tabstop=4
+set expandtab
+" show \t as errors
+match Error /\t/
+" set 4 as the indentation unit, always
+set smarttab shiftwidth=4 sts=4
 " set backspace behaviour
 set backspace=indent,eol,start
-
-set ignorecase
+" enable automatic indentation
+set autoindent
 
 map Y y$
 
@@ -46,18 +43,21 @@ source $CONFIG/vim-plugins/surround.vim
 " `cx` (`X` in visual mode) to exchange pieces of text
 source $CONFIG/vim-plugins/exchange.vim
 
-                          
 "  _ __ ___   _____   _____ 
 " | '_ ` _ \ / _ \ \ / / _ \
 " | | | | | | (_) \ V /  __/
 " |_| |_| |_|\___/ \_/ \___|
                           
-nmap <tab> gt
-nnoremap <leader>n :bn<cr>
+nnoremap <silent>,n :bnext<cr>
+nnoremap <silent>,p :bprevious<cr>
+
+nnoremap g1 :argu 1<cr>
+nnoremap g2 :argu 2<cr>
+nnoremap g3 :argu 3<cr>
+nnoremap g4 :argu 4<cr>
+nnoremap g5 :argu 5<cr>
 
 nnoremap <C-j> :wincmd w<cr>
-" TODO: harpoon-like ?
-
 
  " _              _     
 " | |_ ___   ___ | |___ 
@@ -79,6 +79,7 @@ nmap <silent><Space>n :new<cr>
 if has("nvim")
     nmap <silent><Space>t :vs \| terminal<cr>
     tnoremap <C-j> <Cmd>wincmd w<cr>
+    tnoremap <C-n> <C-\><C-n>
 else
     nmap <silent><Space>t :terminal<cr>
     tnoremap <C-j> <C-w><C-w>
