@@ -35,8 +35,8 @@ alias v=$EDITOR
 shopt -s autocd
 
 # HISTORY SETTINGS:
-unset HISTSIZE 
-unset HISTFILESIZE
+export HISTSIZE=
+export HISTFILESIZE=
 shopt -s histappend
 
 
