@@ -107,7 +107,10 @@ colo slate
 highlight Normal ctermbg=None
 highlight NonText ctermbg=None
 
-nmap <silent> <c-l> :noh<CR>
+" don't highligh matching patenthesis
+let g:loaded_matchparen=1
+
+nmap <silent> <c-l> :nohighlight<CR>
 
        " _   _               
   " ___ | |_| |__   ___ _ __ 
